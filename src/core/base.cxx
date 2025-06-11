@@ -17,7 +17,7 @@ AppBase::AppBase()
 	m_iWidth = 640;
 	m_iHeight = 480;
 
-	m_sTitle = "Untitled";
+	m_sTitle = "Engine";
 	m_bIsRunning = false;
 }
 
