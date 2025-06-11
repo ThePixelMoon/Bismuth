@@ -12,26 +12,26 @@
 
 namespace bismuth
 {
-    
+
 class Graphics;
 
 class SDLInterface : public Interface
 {
-public:
-    SDLInterface();
-    virtual ~SDLInterface();
+  public:
+	SDLInterface();
+	virtual ~SDLInterface();
 
-    virtual bool Initialize(AppBase *theAppBase);
+	virtual bool Initialize(AppBase *theAppBase);
 	virtual bool CreateWindow(std::string m_title);
 
-    virtual void DoLoop(); // hacky hack for emscripten
+	virtual void DoLoop(); // hacky hack for emscripten
 
-protected:
-    AppBase *m_appBase;
-    SDL_Renderer *m_pRenderer;
+  protected:
+	AppBase *m_appBase;
+	SDL_Renderer *m_pRenderer;
 	SDL_Window *m_pWindow;
 
-    Graphics *m_pGraphics;
+	Graphics *m_pGraphics;
 };
 
 } // namespace bismuth

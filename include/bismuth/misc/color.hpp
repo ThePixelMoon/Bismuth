@@ -12,16 +12,19 @@ namespace bismuth::misc
 
 class Color
 {
-public:
-    Color(uint8_t r = 0, uint8_t g = 0, uint8_t b = 0, uint8_t a = 255)
-        : m_r(r), m_g(g), m_b(b), m_a(a) {}
+  public:
+	Color(uint8_t r = 0, uint8_t g = 0, uint8_t b = 0, uint8_t a = 255) : m_r(r), m_g(g), m_b(b), m_a(a)
+	{
+	}
 
-    virtual ~Color() {}
+	virtual ~Color()
+	{
+	}
 
-    uint8_t m_r;
-    uint8_t m_g;
-    uint8_t m_b;
-    uint8_t m_a;
+	uint8_t m_r;
+	uint8_t m_g;
+	uint8_t m_b;
+	uint8_t m_a;
 };
 
 } // namespace bismuth::misc

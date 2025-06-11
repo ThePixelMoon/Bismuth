@@ -13,10 +13,10 @@
 
 enum class State
 {
-    Uninitialized,
-    Initialized,
-    Running,
-    Error
+	Uninitialized,
+	Initialized,
+	Running,
+	Error
 };
 
 namespace bismuth
@@ -28,25 +28,25 @@ class Input;
 
 class AppBase
 {
-public:
-    AppBase();
-    virtual ~AppBase();
+  public:
+	AppBase();
+	virtual ~AppBase();
 
-    virtual bool Initialize();
-    virtual Interface *CreateInterface();
+	virtual bool Initialize();
+	virtual Interface *CreateInterface();
 
-    virtual void Frame(Graphics *theGraphics, float deltaTime);
+	virtual void Frame(Graphics *theGraphics, float deltaTime);
 
-    // variables, and shit..
-    int m_iWidth, m_iHeight;
+	// variables, and shit..
+	int m_iWidth, m_iHeight;
 	bool m_bIsRunning;
 	std::string m_sTitle;
 
-    Input *m_pInput;
+	Input *m_pInput;
 
-protected:
+  protected:
 	State m_state;
-    Interface *m_pInterface;
+	Interface *m_pInterface;
 };
 
 } // namespace bismuth

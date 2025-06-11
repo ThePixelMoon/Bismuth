@@ -35,31 +35,31 @@ void SDLInterface::DoLoop()
 {
 	m_appBase->m_pInput->Reset(); // reset current input
 
-    static Uint32 lastTime = SDL_GetTicks();
-    Uint32 currentTime = SDL_GetTicks();
-    float deltaTime = (currentTime - lastTime) / 1000.0f; // convert ms to seconds
-    lastTime = currentTime;
+	static Uint32 lastTime = SDL_GetTicks();
+	Uint32 currentTime = SDL_GetTicks();
+	float deltaTime = (currentTime - lastTime) / 1000.0f; // convert ms to seconds
+	lastTime = currentTime;
 
-    SDL_Event pEvent;
-    while (SDL_PollEvent(&pEvent))
-    {
-        if (pEvent.type == SDL_EVENT_QUIT)
-        {
-            m_appBase->m_bIsRunning = false;
+	SDL_Event pEvent;
+	while (SDL_PollEvent(&pEvent))
+	{
+		if (pEvent.type == SDL_EVENT_QUIT)
+		{
+			m_appBase->m_bIsRunning = false;
 #ifdef __EMSCRIPTEN__
-            emscripten_cancel_main_loop();
+			emscripten_cancel_main_loop();
 #endif
-        }
+		}
 
 		m_appBase->m_pInput->Update(pEvent); // and update the input
-    }
+	}
 
-    SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
-    SDL_RenderClear(m_pRenderer);
+	SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+	SDL_RenderClear(m_pRenderer);
 
-    m_appBase->Frame(m_pGraphics, deltaTime);
+	m_appBase->Frame(m_pGraphics, deltaTime);
 
-    SDL_RenderPresent(m_pRenderer);
+	SDL_RenderPresent(m_pRenderer);
 }
 
 #ifdef __EMSCRIPTEN__
@@ -91,7 +91,7 @@ bool SDLInterface::CreateWindow(std::string m_title)
 {
 	m_pWindow = SDL_CreateWindow(m_title.c_str(), m_appBase->m_iWidth, m_appBase->m_iHeight, SDL_WINDOW_OPENGL);
 	m_pRenderer = SDL_CreateRenderer(m_pWindow, NULL); // let SDL pick the best renderer for us
-	//SDL_SetRenderVSync(m_pRenderer, 2);
+	// SDL_SetRenderVSync(m_pRenderer, 2);
 
 	m_pGraphics = new Graphics();
 	m_pGraphics->Initialize(m_pRenderer);

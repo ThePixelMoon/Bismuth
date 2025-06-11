@@ -14,17 +14,17 @@
 
 namespace bismuth
 {
-    
+
 class AppBase;
 class Interface;
 
 class Graphics
 {
-public:
-    Graphics();
-    virtual ~Graphics();
+  public:
+	Graphics();
+	virtual ~Graphics();
 
-    virtual bool Initialize(SDL_Renderer *theRenderer);
+	virtual bool Initialize(SDL_Renderer *theRenderer);
 	virtual void FillRect(int theX, int theY, int theWidth, int theHeight);
 	virtual void FillRect(misc::Rect theRect);
 	virtual void SetDrawColor(misc::Color theColor);

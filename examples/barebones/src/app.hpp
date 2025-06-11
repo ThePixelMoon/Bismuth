@@ -12,9 +12,9 @@ namespace bismuth
 
 class App : public AppBase
 {
-public:
-    App();
-    virtual ~App();
+  public:
+	App();
+	virtual ~App();
 };
 
 } // namespace bismuth

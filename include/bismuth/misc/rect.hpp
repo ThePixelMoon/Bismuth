@@ -12,13 +12,14 @@ namespace bismuth::misc
 
 class Rect
 {
-public:
-    Rect(int x = 0, int y = 0, int width = 0, int height = 0 )
-        : m_x(x), m_y(y), m_width(width), m_height(height) {}
-    virtual ~Rect() {};
+  public:
+	Rect(int x = 0, int y = 0, int width = 0, int height = 0) : m_x(x), m_y(y), m_width(width), m_height(height)
+	{
+	}
+	virtual ~Rect(){};
 
-    int m_x, m_y;
-    int m_width, m_height;
+	int m_x, m_y;
+	int m_width, m_height;
 };
 
 inline SDL_Rect ToSDLRect(const Rect &r)

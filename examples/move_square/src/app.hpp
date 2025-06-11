@@ -13,13 +13,13 @@ namespace bismuth
 
 class App : public AppBase
 {
-public:
-    App();
-    virtual ~App();
+  public:
+	App();
+	virtual ~App();
 
-    virtual void Frame(Graphics *theGraphics, float deltaTime) override;
+	virtual void Frame(Graphics *theGraphics, float deltaTime) override;
 
-private:
+  private:
 	float x = 100.f, y = 100.f;
 	float vx = 200.f, vy = 200.f;
 	int boxSize = 100;

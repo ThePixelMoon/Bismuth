@@ -10,15 +10,15 @@
 
 namespace bismuth
 {
-    
+
 class AppBase;
 
 class Interface
 {
-public:
-    virtual ~Interface() {};
+  public:
+	virtual ~Interface(){};
 
-    virtual bool Initialize(AppBase *m_appBase) = 0;
+	virtual bool Initialize(AppBase *m_appBase) = 0;
 	virtual bool CreateWindow(std::string m_title) = 0;
 };
 
