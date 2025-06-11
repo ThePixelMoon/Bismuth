@@ -8,9 +8,9 @@ using namespace bismuth::misc;
 
 App::App()
 {
-	m_iWidth = 800;
-	m_iHeight = 600;
-	m_sTitle = "Moving Square Demo";
+	m_iWidth = 854;
+	m_iHeight = 580;
+	m_sTitle = "Engine (GL Branch)";
 }
 
 App::~App()
