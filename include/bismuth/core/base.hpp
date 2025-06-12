@@ -59,7 +59,7 @@ class AppBase
 		return m_pInterface;
 	}
 
-	EventManager *GetEventManager() const
+	EventManager GetEventManager() const
 	{
 		return m_eventManager;
 	}
@@ -68,7 +68,7 @@ class AppBase
 	Input *m_pInput;
 	State m_state;
 	Interface *m_pInterface;
-	EventManager *m_eventManager;
+	EventManager m_eventManager;
 };
 
 } // namespace bismuth

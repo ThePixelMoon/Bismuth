@@ -1,4 +1,4 @@
-/* event.hpp */
+/* core/event.hpp */
 #ifndef EVENT_HPP
 #define EVENT_HPP
 #ifdef _WIN32
@@ -10,11 +10,12 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <type_traits>
 
 namespace bismuth
 {
 
-enum class EventType
+enum class EventType : int
 {
 	None = 0,
 	KeyPressed,
@@ -23,10 +24,17 @@ enum class EventType
 	Custom
 };
 
+struct EventTypeHash
+{
+	std::size_t operator()(EventType type) const noexcept
+	{
+		return static_cast<std::size_t>(static_cast<std::underlying_type_t<EventType>>(type));
+	}
+};
+
 struct Event
 {
 	EventType type = EventType::None;
-
 	int key = 0;
 	int width = 0, height = 0;
 	std::string message;
@@ -42,31 +50,31 @@ class EventManager
 		m_listeners[type].push_back(std::move(callback));
 	}
 
-	void Unsubscribe(EventType type, EventCallbackFn callback)
+	void Unsubscribe(EventType type, EventCallbackFn /*callback*/)
 	{
 		auto &vec = m_listeners[type];
 		vec.erase(std::remove_if(vec.begin(), vec.end(),
-								 [&](const EventCallbackFn &fn) {
-									 // TODO: comparing std::function is tricky.
-									 return false;
+								 [&](const EventCallbackFn &) {
+									 return false; // no-op for now
 								 }),
 				  vec.end());
 	}
 
 	void Emit(const Event &event) const
 	{
+		if (event.type == EventType::None)
+			return;
+
 		auto it = m_listeners.find(event.type);
 		if (it != m_listeners.end())
 		{
-			for (const auto &callback : it->second)
-			{
-				callback(event);
-			}
+			for (auto &fn : it->second)
+				fn(event);
 		}
 	}
 
   private:
-	std::unordered_map<EventType, std::vector<EventCallbackFn>> m_listeners;
+	std::unordered_map<EventType, std::vector<EventCallbackFn>, EventTypeHash> m_listeners;
 };
 
 } // namespace bismuth

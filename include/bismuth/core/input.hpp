@@ -28,7 +28,7 @@ class Input
 	bool IsKeyPressed(KeyCode key) const;
 	bool IsKeyReleased(KeyCode key) const;
 
-	void SetEventManager(EventManager *eventManager)
+	void SetEventManager(EventManager eventManager)
 	{
 		m_eventManager = eventManager;
 	}
@@ -38,7 +38,7 @@ class Input
 	std::unordered_map<KeyCode, bool> m_keyPressed;
 	std::unordered_map<KeyCode, bool> m_keyReleased;
 
-	EventManager *m_eventManager;
+	EventManager m_eventManager;
 };
 
 } // namespace bismuth
