@@ -61,10 +61,12 @@ set(CMAKE_INSTALL_PREFIX "./out" CACHE BOOL "" FORCE)
 if(BUILD_EXAMPLES)
     add_subdirectory(examples/barebones)
     add_subdirectory(examples/move_square)
+    add_subdirectory(examples/images)
 
     # installing
     install(TARGETS BareBones RUNTIME DESTINATION examples)
     install(TARGETS MovingSquare RUNTIME DESTINATION examples)
+    install(TARGETS Images RUNTIME DESTINATION examples)
     install(FILES $<TARGET_FILE:SDL3::SDL3> DESTINATION examples)
 endif()
 
@@ -78,6 +80,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE _USE_SDL)
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include/bismuth
     ${CMAKE_CURRENT_SOURCE_DIR}/external/SDL/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/stb
 )
 
 if(USE_SDL)

@@ -26,6 +26,16 @@ class SDLInterface : public Interface
 
 	virtual void DoLoop(); // hacky hack for emscripten
 
+	SDL_Renderer *GetRenderer() const
+	{
+		return m_pRenderer;
+	}
+
+	Graphics *GetGraphics() const
+	{
+		return m_pGraphics;
+	}
+
   protected:
 	AppBase *m_appBase;
 	SDL_Renderer *m_pRenderer;

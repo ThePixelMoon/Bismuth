@@ -33,7 +33,7 @@ SDLInterface::~SDLInterface()
 
 void SDLInterface::DoLoop()
 {
-	m_appBase->m_pInput->Reset(); // reset current input
+	m_appBase->GetInput()->Reset(); // reset current input
 
 	static Uint32 lastTime = SDL_GetTicks();
 	Uint32 currentTime = SDL_GetTicks();
@@ -51,7 +51,7 @@ void SDLInterface::DoLoop()
 #endif
 		}
 
-		m_appBase->m_pInput->Update(pEvent); // and update the input
+		m_appBase->GetInput()->Update(pEvent); // and update the input
 	}
 
 	SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
@@ -95,6 +95,8 @@ bool SDLInterface::CreateWindow(std::string m_title)
 
 	m_pGraphics = new Graphics();
 	m_pGraphics->Initialize(m_pRenderer);
+
+	m_appBase->InitHook(); // ehh
 
 	m_appBase->m_bIsRunning = true;
 #ifdef __EMSCRIPTEN__

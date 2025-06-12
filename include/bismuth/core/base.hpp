@@ -8,6 +8,7 @@
 #include "core/interface.hpp"
 #include "core/graphics.hpp"
 #include "core/input.hpp"
+#include "core/event.hpp"
 
 #include <string>
 
@@ -25,7 +26,7 @@ namespace bismuth
 class Interface;
 class Graphics;
 class Input;
-
+class EventManager;
 class AppBase
 {
   public:
@@ -37,16 +38,37 @@ class AppBase
 
 	virtual void Frame(Graphics *theGraphics, float deltaTime);
 
+	// hooks(override those)
+	virtual bool InitHook()
+	{
+		return true;
+	};
+
 	// variables, and shit..
 	int m_iWidth, m_iHeight;
 	bool m_bIsRunning;
 	std::string m_sTitle;
 
-	Input *m_pInput;
+	Input *GetInput() const
+	{
+		return m_pInput;
+	}
+
+	Interface *GetInterface() const
+	{
+		return m_pInterface;
+	}
+
+	EventManager *GetEventManager() const
+	{
+		return m_eventManager;
+	}
 
   protected:
+	Input *m_pInput;
 	State m_state;
 	Interface *m_pInterface;
+	EventManager *m_eventManager;
 };
 
 } // namespace bismuth

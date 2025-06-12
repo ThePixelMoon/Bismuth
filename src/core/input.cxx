@@ -1,14 +1,17 @@
 /* core/input.cxx */
 #include "core/input.hpp"
+#include "core/event.hpp"
 
 using namespace bismuth;
 
 Input::Input()
 {
+	m_eventManager = nullptr;
 }
 
 Input::~Input()
 {
+	m_eventManager = nullptr;
 }
 
 void Input::Reset()
@@ -26,6 +29,14 @@ void Input::Update(const SDL_Event &event)
 		{
 			m_keyDown[key] = true;
 			m_keyPressed[key] = true;
+
+			if (m_eventManager)
+			{
+				Event ev;
+				ev.type = EventType::KeyPressed;
+				ev.key = static_cast<int>(key);
+				m_eventManager->Emit(ev);
+			}
 		}
 	}
 	else if (event.type == SDL_EVENT_KEY_UP)
@@ -33,6 +44,14 @@ void Input::Update(const SDL_Event &event)
 		KeyCode key = FromSDLScancode(event.key.scancode);
 		m_keyDown[key] = false;
 		m_keyReleased[key] = true;
+
+		if (m_eventManager)
+		{
+			Event ev;
+			ev.type = EventType::KeyReleased;
+			ev.key = static_cast<int>(key);
+			m_eventManager->Emit(ev);
+		}
 	}
 }
 

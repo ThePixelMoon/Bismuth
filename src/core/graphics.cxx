@@ -41,6 +41,22 @@ void Graphics::DrawLine(int theX, int theY, int theX2, int theY2)
 	SDL_RenderLine(m_pRenderer, theX, theY, theX2, theY2);
 }
 
+void Graphics::DrawImage(const Image &image, int x, int y)
+{
+	image.Draw(m_pRenderer, x, y);
+}
+
+bool Graphics::LoadImage(Image &image, const std::string &path)
+{
+	return image.LoadFromFile(path, m_pRenderer);
+}
+
+void Graphics::DrawImageEx(const Image &image, const misc::Rect &srcRect, const misc::Rect &destRect,
+						   float rotationDegrees, const SDL_FPoint *center, SDL_FlipMode flip, misc::Color tint)
+{
+	image.DrawEx(m_pRenderer, srcRect, destRect, rotationDegrees, center, flip, tint);
+}
+
 void Graphics::SetDrawColor(Color theColor)
 {
 	// this is a simple wrapper, nothing else

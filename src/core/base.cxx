@@ -32,6 +32,7 @@ bool AppBase::Initialize()
 {
 	m_state = State::Running;
 	m_pInput = new Input();
+	m_pInput->SetEventManager(m_eventManager);
 
 	CreateInterface(); // initialize the interface
 

@@ -8,9 +8,12 @@
 #include <SDL3/SDL.h>
 #include <unordered_map>
 #include "core/keycode.hpp"
+#include "core/event.hpp"
 
 namespace bismuth
 {
+
+class EventManager;
 
 class Input
 {
@@ -25,10 +28,17 @@ class Input
 	bool IsKeyPressed(KeyCode key) const;
 	bool IsKeyReleased(KeyCode key) const;
 
+	void SetEventManager(EventManager *eventManager)
+	{
+		m_eventManager = eventManager;
+	}
+
   private:
 	std::unordered_map<KeyCode, bool> m_keyDown;
 	std::unordered_map<KeyCode, bool> m_keyPressed;
 	std::unordered_map<KeyCode, bool> m_keyReleased;
+
+	EventManager *m_eventManager;
 };
 
 } // namespace bismuth
